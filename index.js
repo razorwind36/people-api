@@ -17,11 +17,15 @@ mongoose.connect(
     if (err) return console.log(err)
     console.log('mongo is of connect')
   })
+
+app.use(express.static(`${__dirname}/dist`))
+
 app.use(bodyParser.json())
 
 app.use(logger)
 
 app.use('/api', router)
 
+app.use('/*', (req, res)=> res.sendFile(`${__dirname}/dist/index.html`))
 
 app.listen(port, ()=> console.log('The app is of runnings on ' + port))
