@@ -16,23 +16,24 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }, (er
           username: 'Ayy lmao',
           email: 'ayy@lamo.com',
           password: '123',
-          passwordComfirmation: '123'
+          passwordConfirmation: '123'
         },
         {
           username: 'Lmao Ayy',
           email: 'lamo@ayy.com',
           password: 'pass',
-          passwordComfirmation: 'pass'
+          passwordConfirmation: 'pass'
         }
 
       ])
     })
-    .then(() => {
+    .then( createdUsers => {
       return person.create([
         {
           name: 'Ayy lmao',
           age: 78,
-          height: 160
+          height: 160,
+          user: createdUsers[0]
         }
       ])
     })
